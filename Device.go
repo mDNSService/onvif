@@ -162,10 +162,11 @@ func (dev *Device) getSupportedServices(resp *http.Response) {
 		//log.Println(err.Error())
 		return
 	}
-	services := doc.FindElements("./Envelope/Body/GetCapabilitiesResponse/Capabilities/*/XAddr")
+	//services := doc.FindElements("./Envelope/Body/GetCapabilitiesResponse/Capabilities/*/XAddr")
+	services := doc.FindElements("./*/*/GetCapabilitiesResponse/Capabilities/*/XAddr")
 	for _, j := range services {
-		////fmt.Println(j.Text())
-		////fmt.Println(j.Parent().Tag)
+		//fmt.Println(j.Text())
+		//fmt.Println(j.Parent().Tag)
 		dev.addEndpoint(j.Parent().Tag, j.Text())
 	}
 	//}
