@@ -168,6 +168,8 @@ func (dev *Device) getSupportedServices(resp *http.Response) {
 	}
 	services := doc.FindElements("./Envelope/Body/GetCapabilitiesResponse/Capabilities/*/XAddr")
 	//services := doc.FindElements("./*/*/GetCapabilitiesResponse/Capabilities/*/XAddr")
+	log.Println("services len:", len(services))
+	log.Printf("%+v", services)
 	for _, j := range services {
 		log.Println(j.Parent().Tag)
 		log.Println(j.Text())
