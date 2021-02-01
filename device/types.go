@@ -1,8 +1,8 @@
 package device
 
 import (
-	"github.com/use-go/onvif/xsd"
-	"github.com/use-go/onvif/xsd/onvif"
+	"github.com/mDNSService/onvif/xsd"
+	"github.com/mDNSService/onvif/xsd/onvif"
 )
 
 type Service struct {

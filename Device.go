@@ -11,10 +11,10 @@ import (
 	"strings"
 
 	"github.com/beevik/etree"
-	"github.com/use-go/onvif/device"
-	"github.com/use-go/onvif/gosoap"
-	"github.com/use-go/onvif/networking"
-	wsdiscovery "github.com/use-go/onvif/ws-discovery"
+	"github.com/mDNSService/onvif/device"
+	"github.com/mDNSService/onvif/gosoap"
+	"github.com/mDNSService/onvif/networking"
+	wsdiscovery "github.com/mDNSService/onvif/ws-discovery"
 )
 
 //Xlmns XML Scheam
@@ -92,7 +92,6 @@ func (dev *Device) GetServices() map[string]string {
 func (dev *Device) GetDeviceInfo() DeviceInfo {
 	return dev.info
 }
-
 
 func readResponse(resp *http.Response) string {
 	b, err := ioutil.ReadAll(resp.Body)
