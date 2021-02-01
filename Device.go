@@ -5,6 +5,7 @@ import (
 	"errors"
 	"fmt"
 	"io/ioutil"
+	"log"
 	"net/http"
 	"reflect"
 	"strconv"
@@ -156,17 +157,20 @@ func (dev *Device) getSupportedServices(resp *http.Response) {
 	//} else {
 	doc := etree.NewDocument()
 
-	data, _ := ioutil.ReadAll(resp.Body)
-
-	if err := doc.ReadFromBytes(data); err != nil {
-		//log.Println(err.Error())
+	data, err := ioutil.ReadAll(resp.Body)
+	if err != nil {
+		log.Println(err)
 		return
 	}
-	//services := doc.FindElements("./Envelope/Body/GetCapabilitiesResponse/Capabilities/*/XAddr")
-	services := doc.FindElements("./*/*/GetCapabilitiesResponse/Capabilities/*/XAddr")
+	if err := doc.ReadFromBytes(data); err != nil {
+		log.Println(err)
+		return
+	}
+	services := doc.FindElements("./Envelope/Body/GetCapabilitiesResponse/Capabilities/*/XAddr")
+	//services := doc.FindElements("./*/*/GetCapabilitiesResponse/Capabilities/*/XAddr")
 	for _, j := range services {
-		//fmt.Println(j.Text())
-		//fmt.Println(j.Parent().Tag)
+		log.Println(j.Parent().Tag)
+		log.Println(j.Text())
 		dev.addEndpoint(j.Parent().Tag, j.Text())
 	}
 	//}
