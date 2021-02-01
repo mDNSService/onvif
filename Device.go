@@ -186,6 +186,9 @@ func NewDevice(xaddr string) (*Device, error) {
 	getCapabilities := device.GetCapabilities{Category: "All"}
 
 	resp, err := dev.CallMethod(getCapabilities)
+	if err != nil {
+		log.Println(err)
+	}
 	//fmt.Println(resp.Request.Host)
 	//fmt.Println(readResponse(resp))
 	if err != nil || resp.StatusCode != http.StatusOK {
