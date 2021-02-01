@@ -162,6 +162,7 @@ func (dev *Device) getSupportedServices(resp *http.Response) {
 		log.Println(err)
 		return
 	}
+	log.Println("ReadAll:", string(data))
 	if err := doc.ReadFromBytes(data); err != nil {
 		log.Println(err)
 		return
